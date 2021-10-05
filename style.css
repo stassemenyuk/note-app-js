@@ -11,11 +11,23 @@ body {
 
 .note-list {
   width: 100%;
-  min-height: 100px;
-  border: 1px solid #000;
+}
+
+.note-list thead,
+.stats thead {
+  background: darkgray;
 }
 
 .form {
   width: 50%;
   margin: 0 auto;
+}
+
+.hide {
+  display: none;
+}
+
+.stats {
+  margin-top: 15px;
+  width: 100%;
 }

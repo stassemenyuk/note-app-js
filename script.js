@@ -1,5 +1,7 @@
 const list = document.querySelector('.list'),
-  form = document.querySelector('.form');
+  form = document.querySelector('.form'),
+  createBtn = document.querySelector('.create'),
+  closeBtn = document.querySelector('.close-form');
 let elementsCounter = 0;
 
 let notes = [];
@@ -17,11 +19,16 @@ function deleteItem(id) {
 
 function generateString() {
   if (notes.length === 0) {
-    return `<tr><td>You don't have any tasks</td></tr>`;
+    return `<tr><td>You don't have any notes</td></tr>`;
   } else {
     let string = '';
     notes.map(({ name, time, id, category }) => {
-      string += `<tr><td>${time}</td><td>${name}</td><td>${category}</td><td>Dates</td><td><button class="delete btn btn-danger" onClick="deleteItem(${id})">X</button></td>  </tr>`;
+      string += `<tr><td>${time}</td><td>${name}</td><td>${category}</td><td>Dates</td>
+      <td>
+      <button class="edit btn btn-info" onClick="editItem(${id})">Edit</button>
+      <button class="archive btn btn-secondary" onClick="archiveItem(${id})">Archive</button>
+      <button class="delete btn btn-danger" onClick="deleteItem(${id})">X</button>
+      </td></tr>`;
     });
     return string;
   }
@@ -31,7 +38,6 @@ function updateList() {
   let listText = generateString();
   list.innerHTML = listText;
   elementsCounter = notes.length;
-  console.log(notes);
 }
 
 updateList();
@@ -47,4 +53,13 @@ form.addEventListener('submit', (e) => {
     id: elementsCounter,
   });
   updateList();
+  e.target.elements[0].value = '';
+});
+
+createBtn.addEventListener('click', () => {
+  form.classList.remove('hide');
+});
+
+closeBtn.addEventListener('click', () => {
+  form.classList.add('hide');
 });

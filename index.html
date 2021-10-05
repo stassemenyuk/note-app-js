@@ -14,6 +14,7 @@
     />
   </head>
   <body>
+    <h1>Your notes</h1>
     <table class="note-list">
       <thead>
         <tr>
@@ -21,22 +22,23 @@
           <th>Title</th>
           <th>Category</th>
           <th>Dates</th>
-          <th>X</th>
+          <th>Tools</th>
         </tr>
       </thead>
       <tbody class="list"></tbody>
     </table>
-    <form class="form" action="">
-      <h2>Add new note</h2>
+    <button class="btn btn-success create">Create note</button>
+    <form class="form hide" action="">
+      <h2>Create note</h2>
       <div class="form-group">
-        <label for="note-content">Title</label>
+        <label for="note-content">Text of the note </label>
         <input
           type="text"
           class="form-control form-control-lg"
           id="note-content"
           placeholder="Here"
         />
-        <label for="note-category">Select</label>
+        <label for="note-category">Select category</label>
         <select id="note-category" class="form-control form-control-lg">
           <option>Task</option>
           <option>Random thought</option>
@@ -44,7 +46,18 @@
         </select>
       </div>
       <button type="submit" class="btn btn-success">Enter</button>
+      <button type="button" class="btn btn-danger close-form">Close</button>
     </form>
+    <table class="stats">
+      <thead>
+        <tr>
+          <th>Note category</th>
+          <th>Active</th>
+          <th>Archive</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
     <script src="script.js"></script>
   </body>
 </html>
