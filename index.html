@@ -27,17 +27,23 @@
       <tbody class="list"></tbody>
     </table>
     <form class="form" action="">
+      <h2>Add new note</h2>
       <div class="form-group">
-        <label for="note-content">Write down note content</label>
+        <label for="note-content">Title</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-lg"
           id="note-content"
-          aria-describedby="emailHelp"
           placeholder="Here"
         />
+        <label for="note-category">Select</label>
+        <select id="note-category" class="form-control form-control-lg">
+          <option>Task</option>
+          <option>Random thought</option>
+          <option>Idea</option>
+        </select>
       </div>
-      <button type="submit">send</button>
+      <button type="submit" class="btn btn-success">Enter</button>
     </form>
     <script src="script.js"></script>
   </body>

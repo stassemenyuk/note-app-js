@@ -17,11 +17,11 @@ function deleteItem(id) {
 
 function generateString() {
   if (notes.length === 0) {
-    return `<tr><td>You don't have any task</td></tr>`;
+    return `<tr><td>You don't have any tasks</td></tr>`;
   } else {
     let string = '';
-    notes.map(({ name, time, id }) => {
-      string += `<tr><td>${time}</td><td>${name}</td><td>Category</td><td>Dates</td><td><span class="delete" onClick="deleteItem(${id})">X</span></td>  </tr>`;
+    notes.map(({ name, time, id, category }) => {
+      string += `<tr><td>${time}</td><td>${name}</td><td>${category}</td><td>Dates</td><td><button class="delete btn btn-danger" onClick="deleteItem(${id})">X</button></td>  </tr>`;
     });
     return string;
   }
@@ -40,6 +40,11 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   let time = new Date().toLocaleTimeString().slice(0, -3);
   let data = e.target.elements;
-  notes.push({ name: data[0].value, time, id: elementsCounter });
+  notes.push({
+    name: data[0].value,
+    time,
+    category: data[1][data[1].options.selectedIndex].label,
+    id: elementsCounter,
+  });
   updateList();
 });
