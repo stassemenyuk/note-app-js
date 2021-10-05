@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <table class="note-list">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Dates</th>
+          <th>X</th>
+        </tr>
+      </thead>
+      <tbody class="list"></tbody>
+    </table>
+    <form class="form" action="">
+      <div class="form-group">
+        <label for="note-content">Write down note content</label>
+        <input
+          type="text"
+          class="form-control"
+          id="note-content"
+          aria-describedby="emailHelp"
+          placeholder="Here"
+        />
+      </div>
+      <button type="submit">send</button>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>

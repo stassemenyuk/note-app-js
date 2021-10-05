@@ -1,0 +1,10 @@
+.delete {
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.note-list {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #000;
+}
