@@ -27,19 +27,27 @@
       </thead>
       <tbody class="list"></tbody>
     </table>
+    <button class="btn btn-secondary get-archived">Archived notes</button>
+    <table class="note-list hide archive">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Dates</th>
+          <th>Tools</th>
+        </tr>
+      </thead>
+      <tbody class="archived-list"></tbody>
+    </table>
     <button class="btn btn-success create">Create note</button>
     <form class="form hide" action="">
       <h2>Create note</h2>
       <div class="form-group">
         <label for="note-content">Text of the note </label>
-        <input
-          type="text"
-          class="form-control form-control-lg"
-          id="note-content"
-          placeholder="Here"
-        />
+        <input type="text" class="form-control" id="note-content" placeholder="Here" />
         <label for="note-category">Select category</label>
-        <select id="note-category" class="form-control form-control-lg">
+        <select id="note-category" class="form-control">
           <option>Task</option>
           <option>Random thought</option>
           <option>Idea</option>
