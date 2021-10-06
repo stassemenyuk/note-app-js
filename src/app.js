@@ -5,7 +5,7 @@ const form = document.querySelector('.form'),
   createBtn = document.querySelector('.create'),
   closeBtn = document.querySelector('.close-form'),
   getArchiveBtn = document.querySelector('.get-archived'),
-  archiveBlock = document.querySelector('.archive');
+  archiveBlock = document.querySelector('.archive-block');
 
 updateList();
 

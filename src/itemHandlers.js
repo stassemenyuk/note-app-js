@@ -7,7 +7,6 @@ import {
 } from './renderFunctions';
 
 export function archiveItem(id) {
-  console.log(id);
   let elem = JSON.parse(JSON.stringify(notes[id]));
   let newNotesArr = [...notes.slice(0, id), ...notes.slice(id + 1)];
   newNotesArr.forEach((item, index) => {
@@ -21,7 +20,6 @@ export function archiveItem(id) {
 }
 
 export function unArchiveItem(id) {
-  console.log(id);
   let elem = JSON.parse(JSON.stringify(archivedNotes[id]));
   let newArchivedArr = [...archivedNotes.slice(0, id), ...archivedNotes.slice(id + 1)];
   newArchivedArr.forEach((item, index) => {
@@ -35,7 +33,6 @@ export function unArchiveItem(id) {
 }
 
 export function deleteItem(id) {
-  console.log(id);
   let newArr = [...notes.slice(0, id), ...notes.slice(id + 1)];
   newArr.forEach((item, index) => {
     if (index >= id) item.id--;
