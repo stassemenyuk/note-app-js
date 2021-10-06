@@ -1,5 +1,5 @@
 import { updateList } from './renderFunctions';
-import { addItem } from './itemHandlers';
+import { addItem, handleVisibility } from './itemHandlers';
 
 const form = document.querySelector('.form'),
   createBtn = document.querySelector('.create'),
