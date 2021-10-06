@@ -47,7 +47,7 @@ function generateString(arr) {
         tools = `<button class="archive btn btn-secondary" onClick="unArchiveItem(${id})">Unarchive</button>`;
       }
       string += `<tr>
-      <td>${time}</td><td >${text}</td><td>${category}</td><td>${dates}</td>
+      <td>${time}</td><td contenteditable class='text' id='${id}''>${text}</td><td>${category}</td><td>${dates}</td>
       <td>${tools}</td>
       </tr>`;
     });
@@ -60,16 +60,19 @@ function updateList() {
   list.innerHTML = notesListText;
   let archievedListText = generateString(archivedNotes);
   archivedList.innerHTML = archievedListText;
+  document.querySelectorAll('.text').forEach((item) => {
+    let id = +item.getAttribute('id');
+    item.addEventListener('input', (e) => {
+      let text = e.target.innerHTML;
+      editItem(text, id);
+    });
+  });
   elementsCounter = notes.length;
   archivedElementsCounter = archivedNotes.length;
-  countNotes();
-  console.log('Notes:');
-  console.log(notes);
-  console.log('ArchievedNotes');
-  console.log(archivedNotes);
+  fillCountTable();
 }
 
-function countNotes() {
+function fillCountTable() {
   let tasksAct = 0,
     tasksArch = 0,
     rndAct = 0,
@@ -168,4 +171,29 @@ function addItem(e) {
   });
   updateList();
   e.target.elements[0].value = '';
+}
+
+function editItem(text, id) {
+  notes.forEach((item) => {
+    if (item.id === id) {
+      let newItem = JSON.parse(JSON.stringify(item));
+      newItem.text = text;
+      let datePattern = /\d+\/\d+\/\d+/;
+      let dates = datePattern.exec(text) || '-';
+      newItem.dates = dates;
+      let newArr = [...notes.slice(0, id), newItem, ...notes.slice(id + 1)];
+      notes = newArr;
+    }
+  });
+  archivedNotes.forEach((item) => {
+    if (item.id === id) {
+      let newItem = JSON.parse(JSON.stringify(item));
+      newItem.text = text;
+      let datePattern = /\d+\/\d+\/\d+/;
+      let dates = datePattern.exec(text) || '-';
+      newItem.dates = dates;
+      let newArr = [...archivedNotes.slice(0, id), newItem, ...archivedNotes.slice(id + 1)];
+      archivedNotes = newArr;
+    }
+  });
 }
