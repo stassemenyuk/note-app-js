@@ -11,14 +11,9 @@ updateList();
 
 form.addEventListener('submit', addItem);
 
-createBtn.addEventListener('click', () => {
-  form.classList.toggle('hide');
-});
+handleVisibility(createBtn, form);
+handleVisibility(getArchiveBtn, archiveBlock);
 
 closeBtn.addEventListener('click', () => {
   form.classList.add('hide');
-});
-
-getArchiveBtn.addEventListener('click', () => {
-  archiveBlock.classList.toggle('hide');
 });
