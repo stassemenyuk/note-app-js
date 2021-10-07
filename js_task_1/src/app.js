@@ -1,5 +1,5 @@
 import { updateList } from './renderFunctions';
-import { addItem, handleVisibility } from './itemHandlers';
+import { submitCreateForm, handleVisibility } from './itemHandlers';
 
 const form = document.querySelector('.form'),
   createBtn = document.querySelector('.create'),
@@ -9,7 +9,7 @@ const form = document.querySelector('.form'),
 
 updateList();
 
-form.addEventListener('submit', addItem);
+form.addEventListener('submit', submitCreateForm);
 
 handleVisibility(createBtn, form);
 handleVisibility(getArchiveBtn, archiveBlock);
