@@ -83,3 +83,9 @@ export function editItem(text, id) {
     }
   });
 }
+
+export function handleVisibility(btn, element) {
+  btn.addEventListener('click', () => {
+    element.classList.toggle('hide');
+  });
+}
