@@ -8,55 +8,69 @@ import {
 
 export function archiveItem(id) {
   let elem = JSON.parse(JSON.stringify(notes[id]));
-  let newNotesArr = [...notes.slice(0, id), ...notes.slice(id + 1)];
-  newNotesArr.forEach((item, index) => {
-    if (index >= id) item.id--;
-  });
-  notes = newNotesArr;
-  elem.id = archivedElementsCounter;
-  let newArchievedArr = [...archivedNotes, elem];
-  archivedNotes = newArchievedArr;
-  updateList();
+  addItem(elem, 'arch');
+  deleteItem(id, 'note');
 }
 
 export function unArchiveItem(id) {
   let elem = JSON.parse(JSON.stringify(archivedNotes[id]));
-  let newArchivedArr = [...archivedNotes.slice(0, id), ...archivedNotes.slice(id + 1)];
-  newArchivedArr.forEach((item, index) => {
-    if (index >= id) item.id--;
-  });
-  archivedNotes = newArchivedArr;
-  elem.id = elementsCounter;
-  let newNotesArr = [...notes, elem];
-  notes = newNotesArr;
+  addItem(elem, 'note');
+  deleteItem(id, 'arch');
+}
+
+export function deleteItem(id, arr = 'note') {
+  if (arr == 'note') {
+    let newArr = [...notes.slice(0, id), ...notes.slice(id + 1)];
+    newArr.forEach((item, index) => {
+      if (index >= id) item.id--;
+    });
+    notes = newArr;
+  } else {
+    let newArr = [...archivedNotes.slice(0, id), ...archivedNotes.slice(id + 1)];
+    newArr.forEach((item, index) => {
+      if (index >= id) item.id--;
+    });
+    archivedNotes = newArr;
+  }
+
   updateList();
 }
 
-export function deleteItem(id) {
-  let newArr = [...notes.slice(0, id), ...notes.slice(id + 1)];
-  newArr.forEach((item, index) => {
-    if (index >= id) item.id--;
-  });
-  notes = newArr;
-  updateList();
-}
-
-export function addItem(e) {
+export function submitCreateForm(e) {
   e.preventDefault();
   let data = e.target.elements;
   if (data[0].value === '') return;
-  let time = new Date().toLocaleTimeString();
+  let elem = {};
+  elem.text = data[0].value;
+  elem.time = new Date().toLocaleTimeString();
+  elem.category = data[1][data[1].options.selectedIndex].label;
   let datePattern = /\d+\/\d+\/\d+/;
-  let dates = datePattern.exec(data[0].value) || '-';
-  notes.push({
-    text: data[0].value,
-    time,
-    category: data[1][data[1].options.selectedIndex].label,
-    dates,
-    id: elementsCounter,
-  });
-  updateList();
+  elem.dates = datePattern.exec(data[0].value) || '-';
   e.target.elements[0].value = '';
+  addItem(elem, 'note');
+}
+
+export function addItem(element, arr = 'note') {
+  let { text, time, category, dates } = element;
+  if (arr === 'note') {
+    notes.push({
+      text,
+      time,
+      category,
+      dates,
+      id: elementsCounter,
+    });
+  } else {
+    archivedNotes.push({
+      text,
+      time,
+      category,
+      dates,
+      id: archivedElementsCounter,
+    });
+  }
+
+  updateList();
 }
 
 export function editItem(text, id) {
